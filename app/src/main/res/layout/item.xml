@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:background="@color/black_33"
+    >
+
+    <TextView
+        android:id="@+id/item_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/titulo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_subtitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="@string/titulo"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_titulo"
+        />
+
+
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue_1"
+
+        android:text="@string/editar"
+        app:icon="@android:drawable/ic_input_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_subtitulo"
+        tools:ignore="MissingConstraints"></com.google.android.material.button.MaterialButton>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_borrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red_1"
+
+        android:text="@string/borrar"
+        android:layout_marginRight="8dp"
+        app:icon="@android:drawable/ic_delete"
+        app:layout_constraintEnd_toStartOf="@+id/btn_editar"
+        app:layout_constraintTop_toBottomOf="@+id/item_subtitulo"
+        tools:ignore="MissingConstraints"></com.google.android.material.button.MaterialButton>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

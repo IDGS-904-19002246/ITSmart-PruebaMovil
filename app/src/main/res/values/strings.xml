@@ -1,3 +1,64 @@
 <resources>
     <string name="app_name">PruebaMovil-ITSmart</string>
+
+
+    <string name="titulo">ITSmart</string>
+    <string name="subtitulo_main">Practica de Diseño UI</string>
+
+    <string name="titulo_lista">Listado de clientes</string>
+
+    <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
+
+    <string name="titulo_form">Información de clientes</string>
+    <string name="titulo_form2">Ubicacion del Cliente</string>
+
+    <!--CLIENTE-->
+    <string name="Id_cliente">Id_cliente</string>
+    <string name="Nombre">Nombre</string>
+    <string name="Telefono">Telefono</string>
+    <string name="Correo">Correo</string>
+    <string name="Fecha_Creacion">Fecha Creacion</string>
+    <!--UBICACION-->
+    <string name="Estado">Estado</string>
+    <string name="Municipio">Municipio</string>
+    <string name="Colonia">Colonia</string>
+    <string name="Calle">Calle</string>
+    <string name="Codigo_Postal">Codigo Postal</string>
+    <string name="Referencia">Referencia</string>
+    <!--VALORES-->
+    <string-array name="Estado_opciones">
+        <item>Aguascalientes</item>
+        <item>Baja California</item>
+        <item>Baja California Sur</item>
+        <item>Campeche</item>
+        <item>Chiapas</item>
+        <item>Chihuahua</item>
+        <item>Coahuila</item>
+        <item>Colima</item>
+        <item>Durango</item>
+        <item>Estado de México</item>
+        <item>Guanajuato</item>
+        <item>Guerrero</item>
+        <item>Hidalgo</item>
+        <item>Jalisco</item>
+        <item>Michoacán</item>
+        <item>Morelos</item>
+        <item>Nayarit</item>
+        <item>Nuevo León</item>
+        <item>Oaxaca</item>
+        <item>Puebla</item>
+        <item>Querétaro</item>
+        <item>Quintana Roo</item>
+        <item>San Luis Potosí</item>
+        <item>Sinaloa</item>
+        <item>Sonora</item>
+        <item>Tabasco</item>
+        <item>Tamaulipas</item>
+        <item>Tlaxcala</item>
+        <item>Veracruz</item>
+        <item>Yucatán</item>
+        <item>Zacatecas</item>
+    </string-array>
+
 </resources>

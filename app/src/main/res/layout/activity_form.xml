@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".FormActivity">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@color/blue_1"
+                android:text="@string/titulo"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/subtitulo_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@color/blue_1"
+                android:textColor="@color/white"
+                android:text="@string/subtitulo_main"
+
+
+                android:textSize="24sp"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="32dp" />
+
+            <TextView
+                android:id="@+id/titulo_lista"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginVertical="8dp"
+                android:text="@string/titulo_form"
+                android:textAlignment="center"
+                android:textSize="24sp"
+
+                />
+
+
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+
+                android:paddingHorizontal="32dp"
+                android:paddingBottom="32dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+<!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+                <TextView android:text="@string/Id_cliente" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Id_cliente"
+                    android:inputType="numberSigned" style="@style/text_input"/>
+
+                <TextView android:text="@string/Nombre" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Nombre"
+                    android:inputType="text" style="@style/text_input"/>
+
+                <TextView android:text="@string/Telefono" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Telefono"
+                    android:inputType="text" style="@style/text_input"/>
+
+                <TextView android:text="@string/Correo" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Correo"
+                    android:inputType="textEmailAddress" style="@style/text_input"/>
+
+                <TextView android:text="@string/Fecha_Creacion" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Fecha_Creacion"
+                    android:inputType="date" style="@style/text_input"/>
+
+                <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginVertical="8dp"
+                    android:text="@string/titulo_form2"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:paddingTop="16dp"
+                    />
+                <TextView android:text="@string/Estado" style="@style/text_label" />
+                <Spinner
+                    android:id="@+id/Estado"
+                    android:layout_centerInParent="true"
+                    style="@style/text_input"
+                    android:paddingVertical="8dp"
+                    android:entries="@array/Estado_opciones" />
+
+                <TextView android:text="@string/Municipio" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Municipio"
+                    android:inputType="text" style="@style/text_input"/>
+
+                <TextView android:text="@string/Colonia" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Colonia"
+                    android:inputType="text" style="@style/text_input"/>
+
+                <TextView android:text="@string/Calle" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Calle"
+                    android:inputType="text" style="@style/text_input"/>
+
+                <TextView android:text="@string/Codigo_Postal" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Codigo_Postal"
+                    android:inputType="numberSigned" style="@style/text_input"/>
+
+                <TextView android:text="@string/Referencia" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Referencia"
+                    android:inputType="text" style="@style/text_input"/>
+                <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--                <fragment-->
+<!--                    android:id="@+id/mapFragment"-->
+<!--                    android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:context=".FormActivity" />-->
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_guardar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/blue_1"
+
+                    android:text="@string/borrar"
+                    android:layout_marginTop="64dp"
+                    app:icon="@android:drawable/ic_menu_save"
+                    tools:ignore="MissingConstraints">
+
+                </com.google.android.material.button.MaterialButton>
+
+            </LinearLayout>
+            </ScrollView>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
