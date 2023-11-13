@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -33,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     //    --------------------------------------------------------------------
     private List<ClsClientes> lista;
     private AdaClientes adaptador;
-    static int id = 0;
     api_inter api;
 
     @Override
@@ -45,10 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         b.recycler.setLayoutManager(new LinearLayoutManager(this));
         lista = new ArrayList<>();
-//        datos_basura();
 
         b.ADD.setOnClickListener(v -> {
-            id = 0;
             Intent intent = new Intent(this, FormActivity.class);
             startActivity(intent);
         });
@@ -58,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
         Call<ClsResponse> call = api.TODOS();
 
 
-        adaptador = new AdaClientes(MainActivity.this,lista);
+        adaptador = new AdaClientes(MainActivity.this, lista);
         b.recycler.setAdapter(adaptador);
         call.enqueue(new Callback<ClsResponse>() {
             @Override
             public void onResponse(Call<ClsResponse> call, Response<ClsResponse> response) {
                 lista = response.body().getClientes();
-                adaptador = new AdaClientes(MainActivity.this,lista);
+                adaptador = new AdaClientes(MainActivity.this, lista);
                 b.recycler.setAdapter(adaptador);
             }
 
@@ -75,17 +74,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-    }
 
-//    public void datos_basura() {
-//        lista.add(new ClsClientes(1, "juan", "martinez", "lopez"));
-//        lista.add(new ClsClientes(2, "juan", "martinez", "lopez"));
-//        lista.add(new ClsClientes(3, "juan", "martinez", "lopez"));
-//        lista.add(new ClsClientes(4, "juan", "martinez", "lopez"));
-//        lista.add(new ClsClientes(5, "juan", "martinez", "lopez"));
-//        lista.add(new ClsClientes(6, "juan", "martinez", "lopez"));
-//        lista.add(new ClsClientes(7, "juan", "martinez", "lopez"));
-//        lista.add(new ClsClientes(8, "juan", "martinez", "lopez"));
-//
-//    }
+    }
 }

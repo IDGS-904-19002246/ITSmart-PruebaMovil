@@ -50,7 +50,7 @@
                 android:paddingHorizontal="32dp" />
 
             <TextView
-                android:id="@+id/titulo_lista"
+                android:id="@+id/titulo_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -92,7 +92,8 @@
                 <TextView android:text="@string/Id_cliente" style="@style/text_label" />
                 <EditText
                     android:id="@+id/Id_cliente"
-                    android:inputType="numberSigned" style="@style/text_input"/>
+                    android:enabled="false"
+                     style="@style/text_input"/>
 
                 <TextView android:text="@string/Nombre" style="@style/text_label" />
                 <EditText
@@ -171,8 +172,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blue_1"
+                    android:textColor="@color/white"
 
-                    android:text="@string/borrar"
+                    android:text="Guardar"
                     android:layout_marginTop="64dp"
                     app:icon="@android:drawable/ic_menu_save"
                     tools:ignore="MissingConstraints">
