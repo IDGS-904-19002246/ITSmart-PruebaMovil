@@ -89,11 +89,11 @@
 
 <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 
-                <TextView android:text="@string/Id_cliente" style="@style/text_label" />
-                <EditText
-                    android:id="@+id/Id_cliente"
-                    android:enabled="false"
-                     style="@style/text_input"/>
+<!--                <TextView android:text="@string/Id_cliente" style="@style/text_label" />-->
+<!--                <EditText-->
+<!--                    android:id="@+id/Id_cliente"-->
+<!--                    android:enabled="false"-->
+<!--                     style="@style/text_input"/>-->
 
                 <TextView android:text="@string/Nombre" style="@style/text_label" />
                 <EditText
@@ -103,7 +103,7 @@
                 <TextView android:text="@string/Telefono" style="@style/text_label" />
                 <EditText
                     android:id="@+id/Telefono"
-                    android:inputType="numberSigned" style="@style/text_input"/>
+                    android:inputType="number" style="@style/text_input"/>
 
                 <TextView android:text="@string/Correo" style="@style/text_label" />
                 <EditText
@@ -145,6 +145,11 @@
 <!--                <EditText-->
 <!--                    android:id="@+id/Municipio"-->
 <!--                    android:inputType="text" style="@style/text_input"/>-->
+
+                <TextView android:text="@string/Cp" style="@style/text_label" />
+                <EditText
+                    android:id="@+id/Cp"
+                    android:inputType="number" style="@style/text_input"/>
 
                 <TextView android:text="@string/Colonia" style="@style/text_label" />
                 <EditText

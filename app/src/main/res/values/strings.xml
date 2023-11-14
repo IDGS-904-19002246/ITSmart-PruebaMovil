@@ -28,7 +28,7 @@
     <string name="Longitud">Longitud</string>
     <string name="Latitud">Latitud</string>
 
-    <string name="Codigo_Postal">Codigo Postal</string>
+    <string name="Cp">Codigo Postal</string>
     <string name="Referencia">Referencia</string>
     <!--VALORES-->
     <string-array name="Estado_opciones">

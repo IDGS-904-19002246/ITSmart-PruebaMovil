@@ -18,6 +18,7 @@ public class ClsClientes implements Parcelable {
             private String longitud;
             private Date createdat;
             private Date updatedat;
+            private int cp;
 //    -----------------------------------------------------------------
 
 
@@ -32,6 +33,7 @@ public class ClsClientes implements Parcelable {
         calle = in.readString();
         latitud = in.readString();
         longitud =in.readString();
+        cp = in.readInt();
     }
 
     @Override
@@ -46,6 +48,7 @@ public class ClsClientes implements Parcelable {
         dest.writeString(calle);
         dest.writeString(latitud);
         dest.writeString(longitud);
+        dest.writeInt(cp);
     }
 
     @Override
@@ -66,7 +69,7 @@ public class ClsClientes implements Parcelable {
     };
 //    -----------------------------------------------------------------
 
-    public ClsClientes(int id_cliente, String nombre, String telefono, String email, String estado, String municipio, String colonia, String calle, String latitud, String longitud, Date createdat, Date updatedat) {
+    public ClsClientes(int id_cliente, String nombre, String telefono, String email, String estado, String municipio, String colonia, String calle, String latitud, String longitud, Date createdat, Date updatedat, int cp) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -79,6 +82,7 @@ public class ClsClientes implements Parcelable {
         this.longitud = longitud;
         this.createdat = createdat;
         this.updatedat = updatedat;
+        this.cp = cp;
     }
 
     public int getId_cliente() {
@@ -175,5 +179,13 @@ public class ClsClientes implements Parcelable {
 
     public void setUpdatedat(Date updatedat) {
         this.updatedat = updatedat;
+    }
+
+    public int getCp() {
+        return cp;
+    }
+
+    public void setCp(int cp) {
+        this.cp = cp;
     }
 }
