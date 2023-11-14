@@ -103,17 +103,17 @@
                 <TextView android:text="@string/Telefono" style="@style/text_label" />
                 <EditText
                     android:id="@+id/Telefono"
-                    android:inputType="text" style="@style/text_input"/>
+                    android:inputType="numberSigned" style="@style/text_input"/>
 
                 <TextView android:text="@string/Correo" style="@style/text_label" />
                 <EditText
                     android:id="@+id/Correo"
                     android:inputType="textEmailAddress" style="@style/text_input"/>
 
-                <TextView android:text="@string/Fecha_Creacion" style="@style/text_label" />
-                <EditText
-                    android:id="@+id/Fecha_Creacion"
-                    android:inputType="date" style="@style/text_input"/>
+<!--                <TextView android:text="@string/Fecha_Creacion" style="@style/text_label" />-->
+<!--                <EditText-->
+<!--                    android:id="@+id/Fecha_Creacion"-->
+<!--                    android:inputType="date" style="@style/text_input"/>-->
 
                 <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 
@@ -136,9 +136,15 @@
                     android:entries="@array/Estado_opciones" />
 
                 <TextView android:text="@string/Municipio" style="@style/text_label" />
-                <EditText
+                <Spinner
                     android:id="@+id/Municipio"
-                    android:inputType="text" style="@style/text_input"/>
+                    android:layout_centerInParent="true"
+                    style="@style/text_input"
+                    android:paddingVertical="8dp"
+                    />
+<!--                <EditText-->
+<!--                    android:id="@+id/Municipio"-->
+<!--                    android:inputType="text" style="@style/text_input"/>-->
 
                 <TextView android:text="@string/Colonia" style="@style/text_label" />
                 <EditText
@@ -150,15 +156,15 @@
                     android:id="@+id/Calle"
                     android:inputType="text" style="@style/text_input"/>
 
-                <TextView android:text="@string/Codigo_Postal" style="@style/text_label" />
+                <TextView android:text="@string/Latitud" style="@style/text_label" />
                 <EditText
-                    android:id="@+id/Codigo_Postal"
-                    android:inputType="numberSigned" style="@style/text_input"/>
+                    android:id="@+id/Latitud"
+                    android:inputType="numberDecimal" style="@style/text_input"/>
 
-                <TextView android:text="@string/Referencia" style="@style/text_label" />
+                <TextView android:text="@string/Longitud" style="@style/text_label" />
                 <EditText
-                    android:id="@+id/Referencia"
-                    android:inputType="text" style="@style/text_input"/>
+                    android:id="@+id/Longitud"
+                    android:inputType="numberDecimal" style="@style/text_input"/>
                 <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 <!--                <fragment-->
 <!--                    android:id="@+id/mapFragment"-->

@@ -14,8 +14,8 @@ public class ClsClientes implements Parcelable {
             private String municipio;
             private String colonia;
             private String calle;
-            private double latitud;
-            private double longitud;
+            private String latitud;
+            private String longitud;
             private Date createdat;
             private Date updatedat;
 //    -----------------------------------------------------------------
@@ -30,8 +30,8 @@ public class ClsClientes implements Parcelable {
         municipio = in.readString();
         colonia = in.readString();
         calle = in.readString();
-        latitud = in.readDouble();
-        longitud = in.readDouble();
+        latitud = in.readString();
+        longitud =in.readString();
     }
 
     @Override
@@ -44,8 +44,8 @@ public class ClsClientes implements Parcelable {
         dest.writeString(municipio);
         dest.writeString(colonia);
         dest.writeString(calle);
-        dest.writeDouble(latitud);
-        dest.writeDouble(longitud);
+        dest.writeString(latitud);
+        dest.writeString(longitud);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class ClsClientes implements Parcelable {
     };
 //    -----------------------------------------------------------------
 
-    public ClsClientes(int id_cliente, String nombre, String telefono, String email, String estado, String municipio, String colonia, String calle, double latitud, double longitud, Date createdat, Date updatedat) {
+    public ClsClientes(int id_cliente, String nombre, String telefono, String email, String estado, String municipio, String colonia, String calle, String latitud, String longitud, Date createdat, Date updatedat) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -145,19 +145,19 @@ public class ClsClientes implements Parcelable {
         this.calle = calle;
     }
 
-    public double getLatitud() {
+    public String getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(double latitud) {
+    public void setLatitud(String latitud) {
         this.latitud = latitud;
     }
 
-    public double getLongitud() {
+    public String getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(double longitud) {
+    public void setLongitud(String longitud) {
         this.longitud = longitud;
     }
 
