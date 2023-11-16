@@ -31,8 +31,9 @@ public interface api_inter {
     Call<String>INSERTAR(
             @Body ClsClientes clsClientes
     );
-    @PUT("clientes")
+    @PUT("clientes/{id}")
     Call<String>EDITAR(
+            @Path("id") int clienteId,
             @Body ClsClientes clsClientes
     );
     @DELETE("clientes   /{Id}")

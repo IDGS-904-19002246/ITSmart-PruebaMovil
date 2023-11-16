@@ -19,6 +19,7 @@ import com.example.pruebamovil_itsmart.models.ClsResponse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -89,8 +90,40 @@ public class FormActivity extends AppCompatActivity {
             } else {
                 if (extras == null){
                     Toast.makeText(this, "insertar", Toast.LENGTH_SHORT).show();
+//                    insertar(new ClsClientes(
+//                            0,
+//                            b.Nombre.getText().toString(),
+//                            b.Telefono.getText().toString(),
+//                            b.Correo.getText().toString(),
+//                            str_estado,
+//                            str_estado,
+//                            b.Colonia.getText().toString(),
+//                            b.Calle.getText().toString(),
+//                            b.Latitud.getText().toString(),
+//                            b.Longitud.getText().toString(),
+//                            new Date(),
+//                            new Date(),
+//                            Integer.parseInt(b.Cp.getText().toString())
+//                    ));
                 }else{
                     Toast.makeText(this, "editar", Toast.LENGTH_SHORT).show();
+
+//                    ClsClientes c = new ClsClientes(
+//                            cliente.getId_cliente(),
+//                            b.Nombre.getText().toString(),
+//                            b.Telefono.getText().toString(),
+//                            b.Correo.getText().toString(),
+//                            str_estado,
+//                            str_estado,
+//                            b.Colonia.getText().toString(),
+//                            b.Calle.getText().toString(),
+//                            b.Latitud.getText().toString(),
+//                            b.Longitud.getText().toString(),
+//                            new Date(),
+//                            new Date(),
+//                            Integer.parseInt(b.Cp.getText().toString()
+//                            ));
+//                    actualizar(c, cliente.getId_cliente());
                 }
             }
         });
@@ -132,18 +165,7 @@ public class FormActivity extends AppCompatActivity {
 //    }
 
 
-    private boolean validarTelefono(int telefono) {
-        String str_telefono = String.valueOf(telefono).trim();
-        if (str_telefono.isEmpty()) {
-            return false;
-        } else if (str_telefono.length() != 10){
-            return false;
-        } else if (telefono <=0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+
     public boolean validarEmail(String email) {
         if (email.isEmpty()) {
             return false;
@@ -173,5 +195,25 @@ public class FormActivity extends AppCompatActivity {
 
     public void insertar( ClsClientes clsClientes){
         Call<String> call = api.INSERTAR(clsClientes);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(FormActivity.this, "Cliente Añadido", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {}
+        });
     }
+    public void actualizar(ClsClientes clsClientes, int id){
+        Call<String> call = api.EDITAR(id, clsClientes);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(FormActivity.this, "Cliente Actualizado", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {}
+        });
+    }
+
 }

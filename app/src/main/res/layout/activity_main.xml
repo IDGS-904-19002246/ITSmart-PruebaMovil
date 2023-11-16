@@ -11,17 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+        <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:gravity="center_horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/titulo"
@@ -29,8 +32,8 @@
                 android:layout_height="wrap_content"
 
                 android:background="@color/blue_1"
-                android:text="@string/titulo"
                 android:gravity="center"
+                android:text="@string/titulo"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -40,14 +43,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:background="@color/blue_1"
-                android:textColor="@color/white"
-                android:text="@string/subtitulo_main"
-
-
-                android:textSize="24sp"
                 android:layout_marginTop="8dp"
-                android:paddingHorizontal="32dp" />
+                android:background="@color/blue_1"
+                android:paddingHorizontal="32dp"
+
+
+                android:text="@string/subtitulo_main"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/titulo_lista"
@@ -65,12 +68,12 @@
 
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="vertical"
-
+                android:layout_height="200dp"
                 android:paddingHorizontal="32dp"
-                tools:listitem="@layout/item"
-                tools:ignore="MissingConstraints" />
+
+                android:scrollbars="vertical"
+                tools:ignore="MissingConstraints"
+                tools:listitem="@layout/item" />
 
         </LinearLayout>
 
@@ -87,6 +90,16 @@
             android:src="@android:drawable/ic_input_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/mapContainer"
+            android:layout_width="262dp"
+            android:layout_height="371dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
