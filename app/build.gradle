@@ -40,14 +40,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
+    //CONEXION A LA API
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    //MATERIAL DESIGN
     implementation 'com.google.android.material:material:1.4.0'
-//MAPA
+    //MAPA
     implementation 'com.google.android.gms:play-services-maps:17.0.1'
-
-
-
-
 }

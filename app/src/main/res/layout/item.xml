@@ -8,7 +8,7 @@
 
     android:padding="16dp"
     android:layout_marginBottom="8dp"
-    android:background="@color/black_33"
+    android:background="@drawable/fondos"
     >
 
     <TextView

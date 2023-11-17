@@ -30,15 +30,8 @@ import com.example.pruebamovil_itsmart.models.ClsResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-//------------------------------
-import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.LatLng;
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
+
+public class MainActivity extends AppCompatActivity{
     private ActivityMainBinding b;
 //    private RecyclerView recycler;
     //    --------------------------------------------------------------------
@@ -46,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private AdaClientes adaptador;
     api_inter api;
     //    --------------------------------------------------------------------
-    private static final LatLng POSICION_INICIAL = new LatLng(37.7749, -122.4194);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,23 +78,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
 
-        SupportMapFragment mapFragment = new SupportMapFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.mapContainer, mapFragment).commit();
-        mapFragment.getMapAsync(googleMap -> {
-                        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            googleMap.getUiSettings().setZoomControlsEnabled(true);
-        });
     }
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        // Personaliza el mapa según sea necesario
-        if (googleMap != null) {
-            // Mover la cámara a la posición inicial
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
-                    new LatLng(37.7749, -122.4194), 15);
-            googleMap.moveCamera(cameraUpdate);
-        }
-    }
+
 
 }

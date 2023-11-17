@@ -2,6 +2,7 @@ package com.example.pruebamovil_itsmart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -16,6 +17,11 @@ import com.example.pruebamovil_itsmart.databinding.ActivityFormBinding;
 import com.example.pruebamovil_itsmart.models.ClsClientes;
 import com.example.pruebamovil_itsmart.models.ClsMunicipios;
 import com.example.pruebamovil_itsmart.models.ClsResponse;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +31,17 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+//--------------------------------------
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
-public class FormActivity extends AppCompatActivity {
+public class FormActivity extends AppCompatActivity implements OnMapReadyCallback {
     private ActivityFormBinding b;
     public static final String CLI_KEY = "cli";
     public ClsClientes cliente;
@@ -34,8 +49,8 @@ public class FormActivity extends AppCompatActivity {
     public List<String> list_estados = new ArrayList<>(Arrays.asList("Ciudad de México","Aguascalientes","Baja California","Baja California Sur","Campeche","Coahuila de Zaragoza","Colima","Chiapas","Chihuahua","Durango","Guanajuato","Guerrero","Hidalgo","Jalisco","México","Michoacán de Ocampo","Morelos","Nayarit","Nuevo León","Oaxaca","Puebla","Querétaro","Quintana Roo","San Luis Potosí","Sinaloa","Sonora","Tabasco","Tamaulipas","Tlaxcala","Veracruz de Ignacio de la Llave","Yucatán","Zacatecas"));
     public String str_estado, str_municipio;
     api_inter api;
-//    private GoogleMap mMap;
-//    private static final LatLng MI_UBICACION = new LatLng(-34, 151);
+    private GoogleMap mMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,41 +104,38 @@ public class FormActivity extends AppCompatActivity {
                 Toast.makeText(this, "Se necesita Codigo Postal valido", Toast.LENGTH_SHORT).show();
             } else {
                 if (extras == null){
-                    Toast.makeText(this, "insertar", Toast.LENGTH_SHORT).show();
-//                    insertar(new ClsClientes(
-//                            0,
-//                            b.Nombre.getText().toString(),
-//                            b.Telefono.getText().toString(),
-//                            b.Correo.getText().toString(),
-//                            str_estado,
-//                            str_estado,
-//                            b.Colonia.getText().toString(),
-//                            b.Calle.getText().toString(),
-//                            b.Latitud.getText().toString(),
-//                            b.Longitud.getText().toString(),
-//                            new Date(),
-//                            new Date(),
-//                            Integer.parseInt(b.Cp.getText().toString())
-//                    ));
+                    insertar(new ClsClientes(
+                            0,
+                            b.Nombre.getText().toString(),
+                            b.Telefono.getText().toString(),
+                            b.Correo.getText().toString(),
+                            str_estado,
+                            str_estado,
+                            b.Colonia.getText().toString(),
+                            b.Calle.getText().toString(),
+                            b.Latitud.getText().toString(),
+                            b.Longitud.getText().toString(),
+                            new Date(),
+                            new Date(),
+                            Integer.parseInt(b.Cp.getText().toString())
+                    ));
                 }else{
-                    Toast.makeText(this, "editar", Toast.LENGTH_SHORT).show();
-
-//                    ClsClientes c = new ClsClientes(
-//                            cliente.getId_cliente(),
-//                            b.Nombre.getText().toString(),
-//                            b.Telefono.getText().toString(),
-//                            b.Correo.getText().toString(),
-//                            str_estado,
-//                            str_estado,
-//                            b.Colonia.getText().toString(),
-//                            b.Calle.getText().toString(),
-//                            b.Latitud.getText().toString(),
-//                            b.Longitud.getText().toString(),
-//                            new Date(),
-//                            new Date(),
-//                            Integer.parseInt(b.Cp.getText().toString()
-//                            ));
-//                    actualizar(c, cliente.getId_cliente());
+                    ClsClientes c = new ClsClientes(
+                            cliente.getId_cliente(),
+                            b.Nombre.getText().toString(),
+                            b.Telefono.getText().toString(),
+                            b.Correo.getText().toString(),
+                            str_estado,
+                            str_estado,
+                            b.Colonia.getText().toString(),
+                            b.Calle.getText().toString(),
+                            b.Latitud.getText().toString(),
+                            b.Longitud.getText().toString(),
+                            new Date(),
+                            new Date(),
+                            Integer.parseInt(b.Cp.getText().toString()
+                            ));
+                    actualizar(c, cliente.getId_cliente());
                 }
             }
         });
@@ -144,25 +156,45 @@ public class FormActivity extends AppCompatActivity {
 
             getMunicipios(cliente.getEstado());
             b.Municipio.setSelection(list_municipios.indexOf(cliente.getMunicipio()));
+
+
+            SupportMapFragment mapFragment = new SupportMapFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.mapContainer, mapFragment).commit();
+            mapFragment.getMapAsync(googleMap -> {
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+                LatLng ubicacion = new LatLng(
+                        Double.parseDouble(cliente.getLatitud()),
+                        Double.parseDouble(cliente.getLongitud()));
+                MarkerOptions markerOptions = new MarkerOptions().position(ubicacion).title("Ubicacion");
+                Marker marker = googleMap.addMarker(markerOptions);
+
+                // Mover la cámara y hacer zoom al marcador
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 12.0f));
+            });
         }else{
             getMunicipios("Ciudad de México");
+            SupportMapFragment mapFragment = new SupportMapFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.mapContainer, mapFragment).commit();
+            mapFragment.getMapAsync(googleMap -> {
+                googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+                LatLng ubicacion = new LatLng(0, 0); // Latitud y longitud de ejemplo
+                MarkerOptions markerOptions = new MarkerOptions().position(ubicacion).title("Marcador de Ejemplo");
+                Marker marker = googleMap.addMarker(markerOptions);
+
+                // Mover la cámara y hacer zoom al marcador
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 12.0f));
+            });
         }
 
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().
-//                findFragmentById(R.id.mapFragment);
-//
-//        mapFragment.getMapAsync((OnMapReadyCallback) FormActivity.this);
+
     }
 
-
-//    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
-//
-//        // Añadir marcador en la ubicación y mover la cámara
-//        Marker marker = mMap.addMarker(new MarkerOptions().position(MI_UBICACION).title("Mi Ubicación"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(MI_UBICACION));
-//        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(MI_UBICACION, 12.0f)); // Ajusta el nivel de zoom según tus necesidades
-//    }
 
 
 
@@ -197,23 +229,31 @@ public class FormActivity extends AppCompatActivity {
         Call<String> call = api.INSERTAR(clsClientes);
         call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(FormActivity.this, "Cliente Añadido", Toast.LENGTH_SHORT).show();
-            }
+            public void onResponse(Call<String> call, Response<String> response) {}
             @Override
             public void onFailure(Call<String> call, Throwable t) {}
         });
+        Toast.makeText(FormActivity.this, "Cliente Añadido", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
     public void actualizar(ClsClientes clsClientes, int id){
         Call<String> call = api.EDITAR(id, clsClientes);
         call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(FormActivity.this, "Cliente Actualizado", Toast.LENGTH_SHORT).show();
-            }
+            public void onResponse(Call<String> call, Response<String> response) {}
             @Override
             public void onFailure(Call<String> call, Throwable t) {}
         });
+        Toast.makeText(FormActivity.this, "Cliente Actualizado", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        if (googleMap != null) {
+            mMap = googleMap;
+        }
+    }
 }

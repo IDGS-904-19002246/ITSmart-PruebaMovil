@@ -21,12 +21,6 @@ public interface api_inter {
     @GET("clientes")
     Call<ClsResponse> TODOS();
 
-
-//    @FormUrlEncoded
-//    @POST("clientes")
-//    Call<String>INSERTAR(
-//            @Field("ImaN")String ima
-//    );
     @POST("clientes")
     Call<String>INSERTAR(
             @Body ClsClientes clsClientes
@@ -36,7 +30,7 @@ public interface api_inter {
             @Path("id") int clienteId,
             @Body ClsClientes clsClientes
     );
-    @DELETE("clientes   /{Id}")
+    @DELETE("clientes/{Id}")
     Call<String>BORRAR(
             @Path("Id") int Id
     );
