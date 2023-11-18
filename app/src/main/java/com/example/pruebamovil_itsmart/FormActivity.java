@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,9 +18,9 @@ import com.example.pruebamovil_itsmart.api.api_inter;
 import com.example.pruebamovil_itsmart.api.retro;
 import com.example.pruebamovil_itsmart.databinding.ActivityFormBinding;
 import com.example.pruebamovil_itsmart.models.ClsClientes;
+import com.example.pruebamovil_itsmart.models.ClsCoordenadas;
+import com.example.pruebamovil_itsmart.models.ClsUbicacion;
 import com.example.pruebamovil_itsmart.models.ClsMunicipios;
-import com.example.pruebamovil_itsmart.models.ClsResponse;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,12 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 //--------------------------------------
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -84,6 +82,7 @@ public class FormActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onNothingSelected(AdapterView<?> parent) {}
         });
+
 //      --------------------------------------------------------------------------
         b.btnGuardar.setOnClickListener(v -> {
             if (b.Nombre.getText().toString().isEmpty() || b.Nombre.getText().toString().equals(" ")){
@@ -192,7 +191,8 @@ public class FormActivity extends AppCompatActivity implements OnMapReadyCallbac
             });
         }
 
-
+        b.Colonia.addTextChangedListener(new MyTextWatcher());
+        b.Calle.addTextChangedListener(new MyTextWatcher());
     }
 
 
@@ -212,7 +212,11 @@ public class FormActivity extends AppCompatActivity implements OnMapReadyCallbac
         call_mun.enqueue(new Callback<ClsMunicipios>() {
             @Override
             public void onResponse(Call<ClsMunicipios> call, Response<ClsMunicipios> response) {
-                list_municipios = response.body().municipios;
+                if(response.body() == null){
+                    list_municipios = new ArrayList<>(Arrays.asList("Hermosillo","Sonora","Celaya","Hermosillo","Leon"));
+                }else{
+                    list_municipios = response.body().municipios;
+                }
                 ArrayAdapter<String> adapterMunicipios = new ArrayAdapter<>(FormActivity.this, android.R.layout.simple_spinner_item, list_municipios);
                 adapterMunicipios.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 b.Municipio.setAdapter(adapterMunicipios);
@@ -249,11 +253,52 @@ public class FormActivity extends AppCompatActivity implements OnMapReadyCallbac
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         if (googleMap != null) {
             mMap = googleMap;
+        }
+    }
+
+    private class MyTextWatcher implements TextWatcher {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            String Col = b.Colonia.getText().toString();
+            String Cal = b.Calle.getText().toString();
+            if (!Col.isEmpty() && !Cal.isEmpty() && !str_estado.isEmpty() && !str_municipio.isEmpty()) {
+                Call<ClsCoordenadas> call = api.COORDENADAS(new ClsUbicacion(str_estado,str_municipio,Col,Cal));
+                call.enqueue(new Callback<ClsCoordenadas>() {
+                    @Override
+                    public void onResponse(Call<ClsCoordenadas> call, Response<ClsCoordenadas> response) {
+                        b.Latitud.setText(String.valueOf(response.body().latitud));
+                        b.Longitud.setText(String.valueOf(response.body().longitud));
+
+                        SupportMapFragment mapFragment = new SupportMapFragment();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.mapContainer, mapFragment).commit();
+                        mapFragment.getMapAsync(googleMap -> {
+                            googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                            googleMap.getUiSettings().setZoomControlsEnabled(true);
+
+                            LatLng ubicacion = new LatLng(
+                                    Double.parseDouble(String.valueOf(response.body().latitud)),
+                                    Double.parseDouble(String.valueOf(response.body().longitud)));
+                            MarkerOptions markerOptions = new MarkerOptions().position(ubicacion).title("Ubicacion");
+                            Marker marker = googleMap.addMarker(markerOptions);
+
+                            // Mover la cámara y hacer zoom al marcador
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacion));
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 12.0f));
+                        });
+                    }
+                    @Override
+                    public void onFailure(Call<ClsCoordenadas> call, Throwable t) {}
+                });
+            }
         }
     }
 }
