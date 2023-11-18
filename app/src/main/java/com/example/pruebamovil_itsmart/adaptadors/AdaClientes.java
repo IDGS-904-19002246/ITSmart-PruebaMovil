@@ -37,12 +37,6 @@ public class AdaClientes extends RecyclerView.Adapter<AdaClientes.Vista>{
         this.Lista = Lista;
         api = retro.getClient().create(api_inter.class);
     }
-//    private OnClientesClickListener onClientesClickListener;
-//    public interface OnClientesClickListener { void onClientesClick(ClsClientes Cli);}
-//
-//    public void setOnPetClickListener(OnClientesClickListener onClientesClickListener) {
-//        this.onClientesClickListener = onClientesClickListener;
-//    }
 //    -----------------------------------------------------------------------------------------
     @NonNull
     @Override

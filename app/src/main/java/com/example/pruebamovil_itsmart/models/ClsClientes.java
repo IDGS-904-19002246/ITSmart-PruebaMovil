@@ -14,10 +14,8 @@ public class ClsClientes implements Parcelable {
             private String municipio;
             private String colonia;
             private String calle;
-            private String latitud;
-            private String longitud;
-            private Date createdat;
-            private Date updatedat;
+            private String latitud; private String longitud;
+            private Date createdat; private Date updatedat;
             private int cp;
 //    -----------------------------------------------------------------
 

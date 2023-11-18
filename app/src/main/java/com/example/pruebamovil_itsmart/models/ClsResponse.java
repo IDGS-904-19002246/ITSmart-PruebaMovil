@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ClsResponse implements Parcelable {
     private List<ClsCount> total;
-//    ":[{"count":"6"}],"" +
     private List<ClsClientes> clientes;
 
     //    --------------------------------------------------------------------
